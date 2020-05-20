@@ -5,29 +5,39 @@
             </div>
 
             <div v-else>
+                
+                
              
-            
-
-
-            <button @click ="createModal" class ="btn btn-primary btn-block">Add new Task</button>
             <table class ="table" v-if="tasks">
                 <thead>
                     <tr>
-                        <th scope="col">id</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Body</th>
+                        <th style="font-size: 18px; width: 5%" scope="col"><b>#</b></th>
+                        <th style="font-size: 18px; width: 20%" scope="col"><b>Restaurant Name</b></th>
+                        <th style="font-size: 18px; width: 20%" scope="col"><b>Contact Info</b></th>
+                        <th style="font-size: 18px; width: 20%" scope="col"><b>Reviews</b></th>
+                        <th style="font-size: 18px; width: 20%" scope="col"><b>Website</b></th>
+                        <th style="font-size: 18px;" class="w-50" scope="col"><b>Location</b></th>
                     </tr>
                 </thead>  
                 <tbody>
                     <tr v-for="(task, index) in tasks">
-                        <td>{{ index + 1 }}</td>
+                        <td><b>{{ index + 1 }}</b></td>
                         <td>{{ task.name }}</td>                  
-                        <td>{{ task.body  }}</td>                  
+                        <td>{{ task.number }}</td>
+                        <td>{{ task.review }}</td>
+                        <a href=""><td>{{ task.website }}</td></a>
+                        <td>{{ task.location }}</td>     
                         <td><button @click="updateModal(index)" class="btn btn-info">Edit</button></td>                  
                         <td><button @click="deleteTask(index)" class="btn btn-danger">Delete</button></td>                       
                     </tr>
+                    
                 </tbody>     
+
             </table>   
+            <button @click ="createModal" class ="btn btn-primary btn-block"><b>Add Restaurant</b></button>
+
+            
+
 
             <!-- Modal -->
             <div class="modal fade" 
@@ -41,7 +51,7 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Create Modal</h5>
+                        <h2 style="margin: 0px 0px 0px 28%; color: #6cb2eb;" class="modal-title" id="exampleModalLabel"><b>New Restaurant</b></h2>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -53,17 +63,31 @@
                         </ul>
                     </div>
                     <div class= "form-group">
-                        <label for="name">Name</label>
+                        <label style="font-size: 30px; text-shadow: 0 0 3px #FF0000, 0 0 5px #4DC0B5; color: #ffed4a;" for="name">Restaurant Name</label>
                         <input v-model = "task.name" type ="text" id="name" class="form-control"> 
                     </div>
-                </div>
                     <div class= "form-group">
-                        <label for="description">Descripton</label>
-                        <input v-model = "task.body" type ="text" id="description" class="form-control"> 
+                        <label style="font-size: 30px; text-shadow: 0 0 3px #FF0000, 0 0 5px #4DC0B5; color: #ffed4a;" for="number">Contact Information</label>
+                        <input v-model = "task.number" type ="number" id="number" class="form-control"> 
                     </div>
+                    <div class= "form-group">
+                        <label style="font-size: 30px; text-shadow: 0 0 3px #FF0000, 0 0 5px #4DC0B5; color: #ffed4a;" for="reviews">Reviews</label>
+                        <input v-model = "task.review" type ="text" id="reviews" class="form-control"> 
+                    </div>
+                    <div class= "form-group">
+                        <label style="font-size: 30px; text-shadow: 0 0 3px #FF0000, 0 0 5px #4DC0B5; color: #ffed4a;" for="website">Website</label>
+                        <input v-model = "task.website" type ="text" id="website" class="form-control"> 
+                    </div>
+                    <div class= "form-group">
+                        <label style="font-size: 30px; text-shadow: 0 0 3px #FF0000, 0 0 5px #4DC0B5; color: #ffed4a;" for="location">Location</label>
+                        <input v-model = "task.location" type ="text" id="location" class="form-control"> 
+                    </div>
+                    
+                </div>
+                    
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button @click="createTask" type="button" class="btn btn-primary">Save changes</button>
+                        <button @click="createTask" type="button" class="btn btn-primary">Add</button>
                     </div>
                 </div>
                 </div>
@@ -82,7 +106,7 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Create Modal</h5>
+                        <h2 style="margin: 0px 0px 0px 28%; color: #6cb2eb;" class="modal-title" id="exampleModalLabel"><b>Edit Restaurant</b></h2>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -94,14 +118,29 @@
                         </ul>
                     </div>
                     <div class= "form-group">
-                        <label for="name">Name</label>
+                        
+                        <label style="font-size: 30px; text-shadow: 0 0 3px #FF0000, 0 0 5px #4DC0B5; color: #ffed4a;" for="name">Restaurant Name</label>
                         <input v-model = "new_update_task.name" type ="text" id="name" class="form-control"> 
                     </div>
-                </div>
                     <div class= "form-group">
-                        <label for="description">Descripton</label>
-                        <input v-model = "new_update_task.body" type ="text" id="description" class="form-control"> 
+                        <label style="font-size: 30px; text-shadow: 0 0 3px #FF0000, 0 0 5px #4DC0B5; color: #ffed4a;" for="number">Contact Information</label>
+                        <input v-model = "new_update_task.number" type ="number" id="number" class="form-control"> 
                     </div>
+                    <div class= "form-group">
+                        <label style="font-size: 30px; text-shadow: 0 0 3px #FF0000, 0 0 5px #4DC0B5; color: #ffed4a;" for="reviews">Reviews</label>
+                        <input v-model = "new_update_task.review" type ="text" id="reviews" class="form-control"> 
+                    </div>
+                    <div class= "form-group">
+                        <label style="font-size: 30px; text-shadow: 0 0 3px #FF0000, 0 0 5px #4DC0B5; color: #ffed4a;" for="website">Website</label>
+                        <input v-model = "new_update_task.website" type ="text" id="website" class="form-control"> 
+                    </div>
+                    <div class= "form-group">
+                        <label style="font-size: 30px; text-shadow: 0 0 3px #FF0000, 0 0 5px #4DC0B5; color: #ffed4a;" for="location">Location</label>
+                        <input v-model = "new_update_task.location" type ="text" id="location" class="form-control"> 
+                    </div>
+                    
+                </div>
+                    
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         <button @click="updateTask" type="button" class="btn btn-primary">Save changes</button>
@@ -121,7 +160,10 @@
             return{
                 task:{
                     name:'',
-                    body:''
+                    number:'',
+                    review: '',
+                    website: '',
+                    location: ''
                 },
                 tasks: [],
                 errors: [],
@@ -144,7 +186,7 @@
             },
             
             createTask() {
-                axios.post(this.uri, {name: this.task.name, body: this.task.body})
+                axios.post(this.uri, {name: this.task.name, number: this.task.number, review: this.task.review, website: this.task.website, location: this.task.location})
                 .then(response=>{
 
                     this.resetData();
@@ -158,8 +200,17 @@
                     if(error.response.data.errors.name){
                         this.errors.push(error.response.data.errors.name[0]);
                     }
-                    if(error.response.data.errors.body){
-                        this.errors.push(error.response.data.errors.body[0]);
+                    if(error.response.data.errors.number){
+                        this.errors.push(error.response.data.errors.number[0]);
+                    }
+                    if(error.response.data.errors.review){
+                        this.errors.push(error.response.data.errors.review[0]);
+                    }
+                    if(error.response.data.errors.website){
+                        this.errors.push(error.response.data.errors.website[0]);
+                    }
+                    if(error.response.data.errors.location){
+                        this.errors.push(error.response.data.errors.location[0]);
                     }
                 })
             },
@@ -167,7 +218,10 @@
             updateTask() {
                 axios.patch(this.uri + this.new_update_task.id, {
                     name: this.new_update_task.name, 
-                    body: this.new_update_task.body
+                    number: this.new_update_task.number,
+                    review: this.new_update_task.review,
+                    website: this.new_update_task.website,
+                    location: this.new_update_task.location
                 })
                 .then(response=>{
                     $("#update-modal").modal("hide");
@@ -179,8 +233,17 @@
                     if(error.response.data.errors.name){
                         this.errors.push(error.response.data.errors.name[0]);
                     }
-                    if(error.response.data.errors.body){
-                        this.errors.push(error.response.data.errors.body[0]);
+                    if(error.response.data.errors.number){
+                        this.errors.push(error.response.data.errors.number[0]);
+                    }
+                    if(error.response.data.errors.review){
+                        this.errors.push(error.response.data.errors.review[0]);
+                    }
+                    if(error.response.data.errors.website){
+                        this.errors.push(error.response.data.errors.website[0]);
+                    }
+                    if(error.response.data.errors.location){
+                        this.errors.push(error.response.data.errors.location[0]);
                     }
                 })
             },
@@ -193,7 +256,7 @@
             },
             
             deleteTask(index) {
-                let confirmBox = confirm("Do you want to delete this?");
+                let confirmBox = confirm("Do you want to delete this restaurant?");
 
                 if(confirmBox == true){
                     axios.delete(this.uri + this.tasks[index].id)
@@ -210,7 +273,10 @@
 
             resetData() {
                 this.task.name = "";
-                this.task.body = "";
+                this.task.number = "";
+                this.task.review = "";
+                this.task.website = "";
+                this.task.location = "";
             },
 
 

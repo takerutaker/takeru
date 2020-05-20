@@ -2057,12 +2057,54 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       task: {
         name: '',
-        body: ''
+        number: '',
+        review: '',
+        website: '',
+        location: ''
       },
       tasks: [],
       errors: [],
@@ -2086,7 +2128,10 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.post(this.uri, {
         name: this.task.name,
-        body: this.task.body
+        number: this.task.number,
+        review: this.task.review,
+        website: this.task.website,
+        location: this.task.location
       }).then(function (response) {
         _this.resetData();
 
@@ -2101,8 +2146,20 @@ __webpack_require__.r(__webpack_exports__);
           _this.errors.push(error.response.data.errors.name[0]);
         }
 
-        if (error.response.data.errors.body) {
-          _this.errors.push(error.response.data.errors.body[0]);
+        if (error.response.data.errors.number) {
+          _this.errors.push(error.response.data.errors.number[0]);
+        }
+
+        if (error.response.data.errors.review) {
+          _this.errors.push(error.response.data.errors.review[0]);
+        }
+
+        if (error.response.data.errors.website) {
+          _this.errors.push(error.response.data.errors.website[0]);
+        }
+
+        if (error.response.data.errors.location) {
+          _this.errors.push(error.response.data.errors.location[0]);
         }
       });
     },
@@ -2111,7 +2168,10 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.patch(this.uri + this.new_update_task.id, {
         name: this.new_update_task.name,
-        body: this.new_update_task.body
+        number: this.new_update_task.number,
+        review: this.new_update_task.review,
+        website: this.new_update_task.website,
+        location: this.new_update_task.location
       }).then(function (response) {
         $("#update-modal").modal("hide");
         toastr.success(response.data.message);
@@ -2122,8 +2182,20 @@ __webpack_require__.r(__webpack_exports__);
           _this2.errors.push(error.response.data.errors.name[0]);
         }
 
-        if (error.response.data.errors.body) {
-          _this2.errors.push(error.response.data.errors.body[0]);
+        if (error.response.data.errors.number) {
+          _this2.errors.push(error.response.data.errors.number[0]);
+        }
+
+        if (error.response.data.errors.review) {
+          _this2.errors.push(error.response.data.errors.review[0]);
+        }
+
+        if (error.response.data.errors.website) {
+          _this2.errors.push(error.response.data.errors.website[0]);
+        }
+
+        if (error.response.data.errors.location) {
+          _this2.errors.push(error.response.data.errors.location[0]);
         }
       });
     },
@@ -2138,7 +2210,7 @@ __webpack_require__.r(__webpack_exports__);
     deleteTask: function deleteTask(index) {
       var _this4 = this;
 
-      var confirmBox = confirm("Do you want to delete this?");
+      var confirmBox = confirm("Do you want to delete this restaurant?");
 
       if (confirmBox == true) {
         axios["delete"](this.uri + this.tasks[index].id).then(function (response) {
@@ -2152,7 +2224,10 @@ __webpack_require__.r(__webpack_exports__);
     },
     resetData: function resetData() {
       this.task.name = "";
-      this.task.body = "";
+      this.task.number = "";
+      this.task.review = "";
+      this.task.website = "";
+      this.task.location = "";
     }
   },
   mounted: function mounted() {
@@ -38344,15 +38419,6 @@ var render = function() {
           })
         ])
       : _c("div", [
-          _c(
-            "button",
-            {
-              staticClass: "btn btn-primary btn-block",
-              on: { click: _vm.createModal }
-            },
-            [_vm._v("Add new Task")]
-          ),
-          _vm._v(" "),
           _vm.tasks
             ? _c("table", { staticClass: "table" }, [
                 _vm._m(0),
@@ -38361,11 +38427,19 @@ var render = function() {
                   "tbody",
                   _vm._l(_vm.tasks, function(task, index) {
                     return _c("tr", [
-                      _c("td", [_vm._v(_vm._s(index + 1))]),
+                      _c("td", [_c("b", [_vm._v(_vm._s(index + 1))])]),
                       _vm._v(" "),
                       _c("td", [_vm._v(_vm._s(task.name))]),
                       _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(task.body))]),
+                      _c("td", [_vm._v(_vm._s(task.number))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(task.review))]),
+                      _vm._v(" "),
+                      _c("a", { attrs: { href: "" } }, [
+                        _c("td", [_vm._v(_vm._s(task.website))])
+                      ]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(task.location))]),
                       _vm._v(" "),
                       _c("td", [
                         _c(
@@ -38404,6 +38478,15 @@ var render = function() {
             : _vm._e(),
           _vm._v(" "),
           _c(
+            "button",
+            {
+              staticClass: "btn btn-primary btn-block",
+              on: { click: _vm.createModal }
+            },
+            [_c("b", [_vm._v("Add Restaurant")])]
+          ),
+          _vm._v(" "),
+          _c(
             "div",
             {
               staticClass: "modal fade",
@@ -38437,9 +38520,18 @@ var render = function() {
                         : _vm._e(),
                       _vm._v(" "),
                       _c("div", { staticClass: "form-group" }, [
-                        _c("label", { attrs: { for: "name" } }, [
-                          _vm._v("Name")
-                        ]),
+                        _c(
+                          "label",
+                          {
+                            staticStyle: {
+                              "font-size": "30px",
+                              "text-shadow": "0 0 3px #FF0000, 0 0 5px #4DC0B5",
+                              color: "#ffed4a"
+                            },
+                            attrs: { for: "name" }
+                          },
+                          [_vm._v("Restaurant Name")]
+                        ),
                         _vm._v(" "),
                         _c("input", {
                           directives: [
@@ -38462,35 +38554,159 @@ var render = function() {
                             }
                           }
                         })
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "form-group" }, [
-                      _c("label", { attrs: { for: "description" } }, [
-                        _vm._v("Descripton")
                       ]),
                       _vm._v(" "),
-                      _c("input", {
-                        directives: [
+                      _c("div", { staticClass: "form-group" }, [
+                        _c(
+                          "label",
                           {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.task.body,
-                            expression: "task.body"
-                          }
-                        ],
-                        staticClass: "form-control",
-                        attrs: { type: "text", id: "description" },
-                        domProps: { value: _vm.task.body },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
+                            staticStyle: {
+                              "font-size": "30px",
+                              "text-shadow": "0 0 3px #FF0000, 0 0 5px #4DC0B5",
+                              color: "#ffed4a"
+                            },
+                            attrs: { for: "number" }
+                          },
+                          [_vm._v("Contact Information")]
+                        ),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.task.number,
+                              expression: "task.number"
                             }
-                            _vm.$set(_vm.task, "body", $event.target.value)
+                          ],
+                          staticClass: "form-control",
+                          attrs: { type: "number", id: "number" },
+                          domProps: { value: _vm.task.number },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(_vm.task, "number", $event.target.value)
+                            }
                           }
-                        }
-                      })
+                        })
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "form-group" }, [
+                        _c(
+                          "label",
+                          {
+                            staticStyle: {
+                              "font-size": "30px",
+                              "text-shadow": "0 0 3px #FF0000, 0 0 5px #4DC0B5",
+                              color: "#ffed4a"
+                            },
+                            attrs: { for: "reviews" }
+                          },
+                          [_vm._v("Reviews")]
+                        ),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.task.review,
+                              expression: "task.review"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: { type: "text", id: "reviews" },
+                          domProps: { value: _vm.task.review },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(_vm.task, "review", $event.target.value)
+                            }
+                          }
+                        })
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "form-group" }, [
+                        _c(
+                          "label",
+                          {
+                            staticStyle: {
+                              "font-size": "30px",
+                              "text-shadow": "0 0 3px #FF0000, 0 0 5px #4DC0B5",
+                              color: "#ffed4a"
+                            },
+                            attrs: { for: "website" }
+                          },
+                          [_vm._v("Website")]
+                        ),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.task.website,
+                              expression: "task.website"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: { type: "text", id: "website" },
+                          domProps: { value: _vm.task.website },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(_vm.task, "website", $event.target.value)
+                            }
+                          }
+                        })
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "form-group" }, [
+                        _c(
+                          "label",
+                          {
+                            staticStyle: {
+                              "font-size": "30px",
+                              "text-shadow": "0 0 3px #FF0000, 0 0 5px #4DC0B5",
+                              color: "#ffed4a"
+                            },
+                            attrs: { for: "location" }
+                          },
+                          [_vm._v("Location")]
+                        ),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.task.location,
+                              expression: "task.location"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: { type: "text", id: "location" },
+                          domProps: { value: _vm.task.location },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.task,
+                                "location",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        })
+                      ])
                     ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "modal-footer" }, [
@@ -38510,7 +38726,7 @@ var render = function() {
                           attrs: { type: "button" },
                           on: { click: _vm.createTask }
                         },
-                        [_vm._v("Save changes")]
+                        [_vm._v("Add")]
                       )
                     ])
                   ])
@@ -38553,9 +38769,18 @@ var render = function() {
                         : _vm._e(),
                       _vm._v(" "),
                       _c("div", { staticClass: "form-group" }, [
-                        _c("label", { attrs: { for: "name" } }, [
-                          _vm._v("Name")
-                        ]),
+                        _c(
+                          "label",
+                          {
+                            staticStyle: {
+                              "font-size": "30px",
+                              "text-shadow": "0 0 3px #FF0000, 0 0 5px #4DC0B5",
+                              color: "#ffed4a"
+                            },
+                            attrs: { for: "name" }
+                          },
+                          [_vm._v("Restaurant Name")]
+                        ),
                         _vm._v(" "),
                         _c("input", {
                           directives: [
@@ -38582,39 +38807,171 @@ var render = function() {
                             }
                           }
                         })
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "form-group" }, [
-                      _c("label", { attrs: { for: "description" } }, [
-                        _vm._v("Descripton")
                       ]),
                       _vm._v(" "),
-                      _c("input", {
-                        directives: [
+                      _c("div", { staticClass: "form-group" }, [
+                        _c(
+                          "label",
                           {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.new_update_task.body,
-                            expression: "new_update_task.body"
-                          }
-                        ],
-                        staticClass: "form-control",
-                        attrs: { type: "text", id: "description" },
-                        domProps: { value: _vm.new_update_task.body },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
+                            staticStyle: {
+                              "font-size": "30px",
+                              "text-shadow": "0 0 3px #FF0000, 0 0 5px #4DC0B5",
+                              color: "#ffed4a"
+                            },
+                            attrs: { for: "number" }
+                          },
+                          [_vm._v("Contact Information")]
+                        ),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.new_update_task.number,
+                              expression: "new_update_task.number"
                             }
-                            _vm.$set(
-                              _vm.new_update_task,
-                              "body",
-                              $event.target.value
-                            )
+                          ],
+                          staticClass: "form-control",
+                          attrs: { type: "number", id: "number" },
+                          domProps: { value: _vm.new_update_task.number },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.new_update_task,
+                                "number",
+                                $event.target.value
+                              )
+                            }
                           }
-                        }
-                      })
+                        })
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "form-group" }, [
+                        _c(
+                          "label",
+                          {
+                            staticStyle: {
+                              "font-size": "30px",
+                              "text-shadow": "0 0 3px #FF0000, 0 0 5px #4DC0B5",
+                              color: "#ffed4a"
+                            },
+                            attrs: { for: "reviews" }
+                          },
+                          [_vm._v("Reviews")]
+                        ),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.new_update_task.review,
+                              expression: "new_update_task.review"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: { type: "text", id: "reviews" },
+                          domProps: { value: _vm.new_update_task.review },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.new_update_task,
+                                "review",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        })
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "form-group" }, [
+                        _c(
+                          "label",
+                          {
+                            staticStyle: {
+                              "font-size": "30px",
+                              "text-shadow": "0 0 3px #FF0000, 0 0 5px #4DC0B5",
+                              color: "#ffed4a"
+                            },
+                            attrs: { for: "website" }
+                          },
+                          [_vm._v("Website")]
+                        ),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.new_update_task.website,
+                              expression: "new_update_task.website"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: { type: "text", id: "website" },
+                          domProps: { value: _vm.new_update_task.website },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.new_update_task,
+                                "website",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        })
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "form-group" }, [
+                        _c(
+                          "label",
+                          {
+                            staticStyle: {
+                              "font-size": "30px",
+                              "text-shadow": "0 0 3px #FF0000, 0 0 5px #4DC0B5",
+                              color: "#ffed4a"
+                            },
+                            attrs: { for: "location" }
+                          },
+                          [_vm._v("Location")]
+                        ),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.new_update_task.location,
+                              expression: "new_update_task.location"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: { type: "text", id: "location" },
+                          domProps: { value: _vm.new_update_task.location },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.new_update_task,
+                                "location",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        })
+                      ])
                     ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "modal-footer" }, [
@@ -38652,11 +39009,60 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("thead", [
       _c("tr", [
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("id")]),
+        _c(
+          "th",
+          {
+            staticStyle: { "font-size": "18px", width: "5%" },
+            attrs: { scope: "col" }
+          },
+          [_c("b", [_vm._v("#")])]
+        ),
         _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Name")]),
+        _c(
+          "th",
+          {
+            staticStyle: { "font-size": "18px", width: "20%" },
+            attrs: { scope: "col" }
+          },
+          [_c("b", [_vm._v("Restaurant Name")])]
+        ),
         _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Body")])
+        _c(
+          "th",
+          {
+            staticStyle: { "font-size": "18px", width: "20%" },
+            attrs: { scope: "col" }
+          },
+          [_c("b", [_vm._v("Contact Info")])]
+        ),
+        _vm._v(" "),
+        _c(
+          "th",
+          {
+            staticStyle: { "font-size": "18px", width: "20%" },
+            attrs: { scope: "col" }
+          },
+          [_c("b", [_vm._v("Reviews")])]
+        ),
+        _vm._v(" "),
+        _c(
+          "th",
+          {
+            staticStyle: { "font-size": "18px", width: "20%" },
+            attrs: { scope: "col" }
+          },
+          [_c("b", [_vm._v("Website")])]
+        ),
+        _vm._v(" "),
+        _c(
+          "th",
+          {
+            staticClass: "w-50",
+            staticStyle: { "font-size": "18px" },
+            attrs: { scope: "col" }
+          },
+          [_c("b", [_vm._v("Location")])]
+        )
       ])
     ])
   },
@@ -38666,9 +39072,13 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "modal-header" }, [
       _c(
-        "h5",
-        { staticClass: "modal-title", attrs: { id: "exampleModalLabel" } },
-        [_vm._v("Create Modal")]
+        "h2",
+        {
+          staticClass: "modal-title",
+          staticStyle: { margin: "0px 0px 0px 28%", color: "#6cb2eb" },
+          attrs: { id: "exampleModalLabel" }
+        },
+        [_c("b", [_vm._v("New Restaurant")])]
       ),
       _vm._v(" "),
       _c(
@@ -38691,9 +39101,13 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "modal-header" }, [
       _c(
-        "h5",
-        { staticClass: "modal-title", attrs: { id: "exampleModalLabel" } },
-        [_vm._v("Create Modal")]
+        "h2",
+        {
+          staticClass: "modal-title",
+          staticStyle: { margin: "0px 0px 0px 28%", color: "#6cb2eb" },
+          attrs: { id: "exampleModalLabel" }
+        },
+        [_c("b", [_vm._v("Edit Restaurant")])]
       ),
       _vm._v(" "),
       _c(

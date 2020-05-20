@@ -41,17 +41,24 @@ class TasksController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'body' => 'required'
+            'number' => 'required',
+            'review'  => 'required',
+            'website'  => 'required',
+            'location'  => 'required'
         ]);
 
         $task = $request->user()->tasks()->create([
             'name' => $request->name,
-            'body' => $request->body
+            'number' => $request->number,
+            'review'  => $request->review,
+            'website'  => $request->website,
+            'location'  => $request->location
+
         ]);
 
         return response()->json([
             'task' => $task,
-            'message' => 'Task has been created'
+            'message' => 'Restaurant has been created'
         ]);
     }
 
@@ -88,14 +95,17 @@ class TasksController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'body' => 'required'
+            'number' => 'required',
+            'review'  => 'required',
+            'website'  => 'required',
+            'location'  => 'required'
         ]);
 
         $task = $request->user()->tasks()->whereId($id)->update($request->all());
 
         return response()->json([
             'task' => $task,
-            'message' => 'Task has been updated'
+            'message' => 'Restaurant has been updated'
         ]);
     }
 
@@ -111,7 +121,7 @@ class TasksController extends Controller
 
         return response()->json([
             'task' => $task,
-            'message' => 'Task has been deleted'
+            'message' => 'Restaurant has been deleted'
         ]);
     }
 }
